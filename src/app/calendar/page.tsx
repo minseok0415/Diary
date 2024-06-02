@@ -1,5 +1,6 @@
 "use client"
 import { useEffect } from "react"
+import Link from "next/link"
 
 const Calendar = () => {
     useEffect(() => {
@@ -26,6 +27,12 @@ const Calendar = () => {
 
     return (
         <>
+            <h1>일기 목록</h1>
+            <div>
+                달력 위치
+            </div>
+            <Link href="/">홈으로</Link>
+            <Link href="/write">오늘 일기 쓰기</Link>
         </>
     )
 }
