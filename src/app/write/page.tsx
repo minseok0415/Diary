@@ -6,7 +6,7 @@ const Write = () => {
             <div>
                 <div>
                     <input type="text" />
-                    <input type="date" />
+                    <p>오늘 날짜</p>
                 </div>
                 <Canvas />
                 <textarea />
