@@ -6,6 +6,7 @@ const Write = () => {
     const [currentDate, setCurrentDate] = useState("")
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+    const [canvasData, setCanvasData] = useState("")
 
     useEffect(() => {
         const today = new Date()
@@ -29,14 +30,14 @@ const Write = () => {
                     />
                     <p>{currentDate}</p>
                 </div>
-                <Canvas />
+                <Canvas saveCanvasData={setCanvasData} />
                 <textarea
                     value={content}
                     onChange={(e) => setContent(() => e.target.value)}
                 />
             </div>
             <div>
-                <button type="submit">저장</button>
+                <button type="button">저장</button>
                 <button type="button">취소</button>
             </div>
         </>

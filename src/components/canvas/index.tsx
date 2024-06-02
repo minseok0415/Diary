@@ -1,7 +1,7 @@
 "use client"
 import { MouseEvent, useEffect, useRef, useState } from "react"
 
-const Canvas: React.FC = () => {
+const Canvas: React.FC<{ saveCanvasData: (data: string) => void }> = ({ saveCanvasData }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const [getCtx, setGetCtx] = useState<CanvasRenderingContext2D | null>(null)
     const [painting, setPainting] = useState(false)
@@ -35,14 +35,28 @@ const Canvas: React.FC = () => {
         }
     }
 
+    const saveCanvas = () => {
+        const canvas = canvasRef.current;
+        if (canvas) {
+            const dataURL = canvas.toDataURL();
+            saveCanvasData(dataURL);
+        }
+    }
+
     return (
         <div>
             <canvas
                 ref={canvasRef}
                 onMouseDown={() => setPainting(true)}
-                onMouseUp={() => setPainting(false)}
+                onMouseUp={() => {
+                    setPainting(false)
+                    saveCanvas()
+                }}
                 onMouseMove={e => drawFn(e)}
-                onMouseLeave={() => setPainting(false)}
+                onMouseLeave={() => {
+                    setPainting(false)
+                    saveCanvas()
+                }}
             />
         </div>
     )
