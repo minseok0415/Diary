@@ -4,6 +4,8 @@ import Canvas from "@/components/canvas"
 
 const Write = () => {
     const [currentDate, setCurrentDate] = useState("")
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
 
     useEffect(() => {
         const today = new Date()
@@ -20,11 +22,18 @@ const Write = () => {
         <>
             <div>
                 <div>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(() => e.target.value)}
+                    />
                     <p>{currentDate}</p>
                 </div>
                 <Canvas />
-                <textarea />
+                <textarea
+                    value={content}
+                    onChange={(e) => setContent(() => e.target.value)}
+                />
             </div>
             <div>
                 <button type="submit">저장</button>
