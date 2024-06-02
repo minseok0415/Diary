@@ -18,6 +18,32 @@ const Write = () => {
         const formattedDate = `${year}년 ${month}월 ${day}일 ${dayOfWeek}`
         setCurrentDate(formattedDate)
     }, [])
+
+    const saveDiary = async () => {
+        const DTO = {
+            title: title,
+            content: content,
+            date: currentDate,
+            canvasData: canvasData
+        }
+
+        await fetch("http://localhost:3000/api", {
+            method: "POST",
+            body: JSON.stringify(DTO)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok")
+                }
+                return response.json()
+                })
+                .then(data => {
+                    console.log("Response data:", data)
+                })
+                .catch(error => {
+                    console.error("Error:", error)
+                })
+    }
     
     return (
         <>
@@ -37,7 +63,10 @@ const Write = () => {
                 />
             </div>
             <div>
-                <button type="button">저장</button>
+                <button
+                    type="button"
+                    onClick={saveDiary}
+                >저장</button>
                 <button type="button">취소</button>
             </div>
         </>
