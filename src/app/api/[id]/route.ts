@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     })
   }
   
-  const items = await db.all("SELECT * FROM diary WHERE id = ?", [diaryID])
+  const items = await db.get("SELECT * FROM diary WHERE id = ?", [diaryID])
 
   return new Response(JSON.stringify(items), {
     headers: { "Content-Type": "application/json" },
