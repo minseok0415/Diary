@@ -113,6 +113,15 @@ const Calendar = () => {
 
         setCalender(contents.join(""))
     }
+
+    const moveToToday = () => {
+        const today = new Date()
+        const year = today.getFullYear()
+        const month = String(today.getMonth() + 1)
+
+        setCurrentYear(year)
+        setCurrentMonth(month)
+    }
     
     const changeMonth = (diff: number) => {
         setCurrentMonth(prev => prev + diff)
@@ -171,6 +180,9 @@ const Calendar = () => {
                     </select>
                     <button onClick={() => changeMonth(1)}>
                         {'>'}
+                    </button>
+                    <button onClick={moveToToday}>
+                        오늘
                     </button>
                 </div>
                 <div>
