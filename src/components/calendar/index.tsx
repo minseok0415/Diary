@@ -1,12 +1,21 @@
 import { ChangeEvent, useEffect, useState } from "react"
 
+interface Diary {
+    id: number,
+    date: string
+}
+
+interface DiaryList extends Array<Diary> {}
+
 const Calendar = () => {
+    const [diaryList, setDiaryList] = useState<DiaryList>([])
+
     useEffect(() => {
         getDiary()
     }, [])
 
     const getDiary = async () => {
-        await fetch("http://localhost:3000/api", {
+        await fetch("http://localhost:3000/api/list", {
             method: "GET"
         })
             .then(response => {
@@ -17,6 +26,7 @@ const Calendar = () => {
                 })
                 .then(data => {
                     console.log("Response data:", data)
+                    setDiaryList(data)
                 })
                 .catch(error => {
                     console.error("Error:", error)
@@ -69,18 +79,34 @@ const Calendar = () => {
         let contents = []
 
         for (let i = 0; i < calender.length; i++) {
+            let diaryID = 0
             if (i === 0) contents.push("<tr>")
             else if (i % 7 === 0) {
                 contents.push("</tr>")
                 contents.push("<tr>")
             }
-            contents.push(
-                `<td>
-                    <div>
-                        <span>${calender[i]}</span>
-                    </div>
-                </td>`
-            )
+            diaryList.forEach((diary: Diary) => {
+                if (diary.date === `${currentYear}-${currentMonth}-${calender[i]}`)
+                    diaryID = diary.id
+            })
+            if (diaryID) {
+                contents.push(
+                    `<td>
+                        <div>
+                            <a href="/view/${diaryID}">${calender[i]}</a>
+                        </div>
+                    </td>`
+                )
+            }
+            else {
+                contents.push(
+                    `<td>
+                        <div>
+                            <span>${calender[i]}</span>
+                        </div>
+                    </td>`
+                )
+            }
         }
 
         contents.push("</tr>")
@@ -109,6 +135,10 @@ const Calendar = () => {
         }
         changeYearMonth(currentYear, currentMonth)
     }, [currentYear, currentMonth])
+
+    useEffect(() => {
+        changeYearMonth(currentYear, currentMonth)
+    }, [diaryList])
     
     return (
         <div>
