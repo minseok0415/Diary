@@ -1,5 +1,6 @@
 "use client"
 import Canvas from "@/components/canvas"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 interface Props {
@@ -84,6 +85,7 @@ const Diary = (props: Props) => {
                 })
                 .then(data => {
                     console.log("Response data:", data)
+                    window.history.back()
                 })
                 .catch(error => {
                     console.error("Error:", error)
@@ -126,6 +128,10 @@ const Diary = (props: Props) => {
                 <button
                     onClick={deleteDiary}
                 >삭제</button>
+            </div>
+            <div>
+                <Link href="/">홈으로</Link>
+                <Link href="/view">일기 목록</Link>
             </div>
         </>
     )
