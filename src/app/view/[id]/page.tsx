@@ -45,6 +45,24 @@ const Diary = (props: Props) => {
                 })
     }
 
+    const deleteDiary = async () => {
+        await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok")
+                }
+                return response.json()
+                })
+                .then(data => {
+                    console.log("Response data:", data)
+                })
+                .catch(error => {
+                    console.error("Error:", error)
+                })
+    }
+
     return (
         <>
             <div>
@@ -64,7 +82,9 @@ const Diary = (props: Props) => {
             </div>
             <div>
                 <button>수정</button>
-                <button>삭제</button>
+                <button
+                    onClick={deleteDiary}
+                >삭제</button>
             </div>
         </>
     )
