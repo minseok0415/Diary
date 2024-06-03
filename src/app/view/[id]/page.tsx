@@ -22,6 +22,21 @@ const Diary = (props: Props) => {
     const [canvasData, setCanvasData] = useState("")
     const [fixDiary, setFixDiary] = useState(false)
 
+    const toRegularForm = (date: string) => {
+        if (date === "") return
+
+        const splited = date.split('-')
+        const year = splited[0]
+        const month = splited[1].length === 2 ? splited[1] : '0' + splited[1]
+        const day = splited[2].length === 2 ? splited[2] : '0' + splited[2]
+
+        const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
+        const dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+        const dayOfWeekIndex = dateObj.getDay()
+
+        return `${year}년 ${month}월 ${day}일 ${daysOfWeek[dayOfWeekIndex]}`
+    }
+
     useEffect(() => {
         getDiaryById()
     }, [])
@@ -105,7 +120,7 @@ const Diary = (props: Props) => {
                         readOnly={!fixDiary}
                         onChange={(e) => setDiaryData((prev) => ({...prev, title: e.target.value}))}
                     />
-                    <p>{diaryData.date}</p>
+                    <p>{toRegularForm(diaryData.date)}</p>
                 </div>
                 <Canvas
                     saveCanvasData={setCanvasData}
