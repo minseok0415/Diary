@@ -74,22 +74,25 @@ const Diary = (props: Props) => {
     }
 
     const deleteDiary = async () => {
-        await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
-            method: "DELETE"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok")
-                }
-                return response.json()
-                })
-                .then(data => {
-                    console.log("Response data:", data)
-                    window.history.back()
-                })
-                .catch(error => {
-                    console.error("Error:", error)
-                })
+        const confirmation = window.confirm('정말로 삭제하시겠습니까?')
+        if (confirmation) {
+            await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
+                method: "DELETE"
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok")
+                    }
+                    return response.json()
+                    })
+                    .then(data => {
+                        console.log("Response data:", data)
+                        window.history.back()
+                    })
+                    .catch(error => {
+                        console.error("Error:", error)
+                    })
+        }
     }
 
     return (
