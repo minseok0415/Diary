@@ -1,12 +1,22 @@
 "use client"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface Props {
     params: { id: number },
 }
 
+interface DiaryData {
+    id: number,
+    title: string,
+    content: string,
+    date: string,
+    canvasData: string
+}
+
 const Diary = (props: Props) => {
     const diaryID = props.params.id
+
+    const [diaryData, setDiaryData] = useState<DiaryData>({id: 0, title: "", content: "", date: "", canvasData: ""})
 
     useEffect(() => {
         getDiaryById()
@@ -24,6 +34,7 @@ const Diary = (props: Props) => {
                 })
                 .then(data => {
                     console.log("Response data:", data)
+                    setDiaryData(data)
                 })
                 .catch(error => {
                     console.error("Error:", error)
