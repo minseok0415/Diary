@@ -1,4 +1,5 @@
 "use client"
+import Canvas from "@/components/canvas"
 import { useEffect, useState } from "react"
 
 interface Props {
@@ -17,6 +18,7 @@ const Diary = (props: Props) => {
     const diaryID = props.params.id
 
     const [diaryData, setDiaryData] = useState<DiaryData>({id: 0, title: "", content: "", date: "", canvasData: ""})
+    const [canvasData, setCanvasData] = useState("")
 
     useEffect(() => {
         getDiaryById()
@@ -35,6 +37,7 @@ const Diary = (props: Props) => {
                 .then(data => {
                     console.log("Response data:", data)
                     setDiaryData(data)
+                    setCanvasData(data.canvasData)
                 })
                 .catch(error => {
                     console.error("Error:", error)
@@ -43,7 +46,17 @@ const Diary = (props: Props) => {
 
     return (
         <>
-            {diaryID}
+            <div>
+                <div>
+                    <p>{diaryData.title}</p>
+                    <p>{diaryData.date}</p>
+                </div>
+                <Canvas saveCanvasData={setCanvasData} imageSrc={canvasData} />
+                <textarea
+                    value={diaryData.content}
+                    readOnly
+                />
+            </div>
         </>
     )
 }
