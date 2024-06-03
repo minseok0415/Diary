@@ -21,6 +21,34 @@ const Write = () => {
         setNumberDate(`${year}-${parseInt(month)}-${parseInt(day)}`)
     }, [])
 
+    useEffect(() => {
+        if (numberDate.length !== 0) {
+            console.log(numberDate)
+            checkAlreadyExist()
+        }
+    }, [numberDate])
+
+    const checkAlreadyExist = async () => {
+        await fetch(`http://localhost:3000/api/check/diary?date=${numberDate}`, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok")
+                }
+                return response.json()
+                })
+                .then(data => {
+                    console.log("Response data:", data)
+                    if (data.id !== -1) {
+                        window.location.href = `/view/${data.id}`
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error)
+                })
+    }
+
     const saveDiary = async () => {
         const DTO = {
             title: title,
