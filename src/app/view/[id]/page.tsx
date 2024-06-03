@@ -19,6 +19,7 @@ const Diary = (props: Props) => {
 
     const [diaryData, setDiaryData] = useState<DiaryData>({id: 0, title: "", content: "", date: "", canvasData: ""})
     const [canvasData, setCanvasData] = useState("")
+    const [fixCanvas, setFixCanvas] = useState(false)
 
     useEffect(() => {
         getDiaryById()
@@ -51,7 +52,11 @@ const Diary = (props: Props) => {
                     <p>{diaryData.title}</p>
                     <p>{diaryData.date}</p>
                 </div>
-                <Canvas saveCanvasData={setCanvasData} imageSrc={canvasData} />
+                <Canvas
+                    saveCanvasData={setCanvasData}
+                    imageSrc={canvasData}
+                    drawingEnable={fixCanvas}
+                />
                 <textarea
                     value={diaryData.content}
                     readOnly
