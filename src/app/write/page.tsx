@@ -69,6 +69,7 @@ const Write = () => {
                 })
                 .then(data => {
                     console.log("Response data:", data)
+                    window.history.back()
                 })
                 .catch(error => {
                     console.error("Error:", error)
