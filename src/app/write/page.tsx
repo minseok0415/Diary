@@ -97,7 +97,12 @@ const Write = () => {
                     type="button"
                     onClick={saveDiary}
                 >저장</button>
-                <button type="button">취소</button>
+                <button
+                    type="button"
+                    onClick={() => {
+                        window.history.back()
+                    }}
+                >취소</button>
             </div>
         </>
     )
