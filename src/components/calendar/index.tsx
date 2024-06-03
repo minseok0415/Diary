@@ -117,7 +117,7 @@ const Calendar = () => {
     const moveToToday = () => {
         const today = new Date()
         const year = today.getFullYear()
-        const month = String(today.getMonth() + 1)
+        const month = today.getMonth() + 1
 
         setCurrentYear(year)
         setCurrentMonth(month)
