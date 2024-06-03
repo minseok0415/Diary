@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import Link from "next/link"
 
-const Calendar = () => {
+const View = () => {
     useEffect(() => {
         getDiary()
     }, [])
@@ -37,4 +37,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar
+export default View

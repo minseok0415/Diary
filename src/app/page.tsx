@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <h1>나의 그림일기</h1>
-      <Link href="/calendar">
+      <Link href="/view">
         일기 목록
       </Link>
       <Link href="/write">
