@@ -6,6 +6,7 @@ const Write = () => {
     const [currentDate, setCurrentDate] = useState("")
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+    const [numberDate, setNumberDate] = useState("")
     const [canvasData, setCanvasData] = useState("")
 
     useEffect(() => {
@@ -17,13 +18,14 @@ const Write = () => {
         const dayOfWeek = daysOfWeek[today.getDay()]
         const formattedDate = `${year}년 ${month}월 ${day}일 ${dayOfWeek}`
         setCurrentDate(formattedDate)
+        setNumberDate(`${year}-${parseInt(month)}-${parseInt(day)}`)
     }, [])
 
     const saveDiary = async () => {
         const DTO = {
             title: title,
             content: content,
-            date: currentDate,
+            date: numberDate,
             canvasData: canvasData
         }
 
