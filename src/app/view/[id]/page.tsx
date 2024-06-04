@@ -1,7 +1,7 @@
 "use client"
 import Canvas from "@/components/canvas"
 import { Container, GlobalStyle } from "@/styles/common"
-import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/detail"
+import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/diary"
 import Link from "next/link"
 import { ChangeEvent, useEffect, useState } from "react"
 
