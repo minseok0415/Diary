@@ -26,7 +26,7 @@ export const Title = styled.div`
 
 export const Box = styled.div`
     width: 42rem;
-    height: 20rem;
+    height: 24rem;
 
     display: flex;
     align-items: center;
