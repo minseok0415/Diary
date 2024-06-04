@@ -1,6 +1,9 @@
 "use client"
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import Canvas from "@/components/canvas"
+import { Container, GlobalStyle } from "@/styles/common"
+import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/diary"
+import Link from "next/link"
 
 const Write = () => {
     const [currentDate, setCurrentDate] = useState("")
@@ -77,35 +80,56 @@ const Write = () => {
     }
     
     return (
-        <>
-            <div>
-                <div>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(() => e.target.value)}
+        <Container>
+            <GlobalStyle />
+            <Detail>
+                <VerticalLine />
+                <Page>
+                    <TitleWraper>
+                        <Title
+                            value={title}
+                            placeholder="제목"
+                            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setTitle(() => e.target.value)}
+                        />
+                        <WrittenDate>{currentDate}</WrittenDate>
+                    </TitleWraper>
+                    <Canvas saveCanvasData={setCanvasData} />
+                </Page>
+                <Page>
+                    <Content
+                        value={content}
+                        placeholder="오늘 하루를 기록해보세요."
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(() => e.target.value)}
                     />
-                    <p>{currentDate}</p>
-                </div>
-                <Canvas saveCanvasData={setCanvasData} />
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(() => e.target.value)}
-                />
-            </div>
-            <div>
-                <button
-                    type="button"
-                    onClick={saveDiary}
-                >저장</button>
-                <button
-                    type="button"
-                    onClick={() => {
-                        window.history.back()
-                    }}
-                >취소</button>
-            </div>
-        </>
+                    <Options>
+                        <Buttons>
+                            <Button
+                                onClick={saveDiary}
+                            >저장</Button>
+                            <Button
+                                onClick={() => {
+                                    window.history.back()
+                                }}
+                            >취소</Button>  
+                        </Buttons>
+                        <Bookmarks>
+                            <DiamondTop />
+                            <DiamondMid />
+                            <Link href="/">
+                                <Bookmark>
+                                    홈으로
+                                </Bookmark>
+                            </Link>
+                            <Link href="/view">
+                                <Bookmark>
+                                    일기 목록
+                                </Bookmark>
+                            </Link>
+                        </Bookmarks>
+                    </Options>
+                </Page>
+            </Detail>
+        </Container>
     )
 }
 
