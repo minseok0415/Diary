@@ -29,7 +29,7 @@ export const Container = styled.div`
 
     background-color: #4F5152;
 
-    background-image: url("images/background.jpg");
+    background-image: url("/images/background.jpg");
     background-size: cover;
     background-blend-mode: exclusion;
 `
