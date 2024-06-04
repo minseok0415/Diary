@@ -1,5 +1,6 @@
 "use client"
-import { MouseEvent, useEffect, useRef, useState } from "react"
+import { CanvasComponent, CanvasContainer } from "@/styles/canvas"
+import React, { MouseEvent, useEffect, useRef, useState } from "react"
 
 const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: string, drawingEnable?: boolean }> = ({ saveCanvasData, imageSrc, drawingEnable = true }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -9,8 +10,9 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     useEffect(() => {
         const canvas = canvasRef.current
         if (canvas) {
-            canvas.width = 650
-            canvas.height = 540
+            canvas.width = 360
+            canvas.height = 400
+            canvas.style.cssText += "background-color: #fff"
             const ctx = canvas.getContext("2d")
             if (ctx) {
                 ctx.lineJoin = "round"
@@ -46,29 +48,29 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     }
 
     const saveCanvas = () => {
-        const canvas = canvasRef.current;
+        const canvas = canvasRef.current
         if (canvas) {
-            const dataURL = canvas.toDataURL();
-            saveCanvasData(dataURL);
+            const dataURL = canvas.toDataURL()
+            saveCanvasData(dataURL)
         }
     }
 
     return (
-        <div>
-            <canvas
+        <CanvasContainer enable={`${drawingEnable}`}>
+            <CanvasComponent
                 ref={canvasRef}
                 onMouseDown={() => setPainting(true)}
                 onMouseUp={() => {
                     setPainting(false)
                     saveCanvas()
                 }}
-                onMouseMove={e => drawFn(e)}
+                onMouseMove={(e: MouseEvent<HTMLCanvasElement>) => drawFn(e)}
                 onMouseLeave={() => {
                     setPainting(false)
                     saveCanvas()
                 }}
             />
-        </div>
+        </CanvasContainer>
     )
 }
 
