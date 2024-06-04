@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const VerticalLine = styled.div`
+    position: absolute;
+
+    width: 0.1rem;
+    height: 37rem;
+
+    background-color: #E8E8E8;
+    box-shadow: 0 0 2rem 0.1rem #888;
+
+    z-index: -1;
+`
+
 export const List = styled.div`
     width: 52rem;
     height: 36rem;
@@ -15,7 +27,9 @@ export const List = styled.div`
     border-bottom: 1rem solid #EEF4F0;
     border-left: 0.6rem solid #c27d7e;
     border-right: 0.6rem solid #c27d7e;
-    box-shadow: 0.1rem 0 1rem 0.1rem #EEF4F0 inset;
+    box-shadow: 0 0 2rem 1rem #EEF4F0 inset;
+
+    z-index: 0;
 `
 
 export const Title = styled.div`

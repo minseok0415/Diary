@@ -2,13 +2,14 @@
 import Link from "next/link"
 import Calendar from "@/components/calendar"
 import { Container, GlobalStyle } from "@/styles/common"
-import { Box, Button, DiamondLeft, DiamondRight, List, Title, Wraper } from "@/styles/view"
+import { Box, Button, DiamondLeft, DiamondRight, List, Title, VerticalLine, Wraper } from "@/styles/view"
 
 const View = () => {
     return (
         <Container>
             <GlobalStyle />
             <List>
+                <VerticalLine />
                 <Title>일기 목록</Title>
                 <Box>
                     <Calendar />
