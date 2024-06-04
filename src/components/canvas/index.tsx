@@ -10,6 +10,8 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     const canvasSize = 360
     const [brushSize, setBrushSize] = useState(2.5)
     const [brushColor, setBrushColor] = useState("#000000")
+    const [brushType, setBrushType] = useState("지우개")
+    const [tempColor, setTempColor] = useState("#000000")
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -43,12 +45,24 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             const ctx = canvas.getContext("2d")
             if (ctx) {
                 ctx.lineWidth = brushSize
+                
+                setGetCtx(ctx)
+            }
+        }
+    }, [brushSize])
+
+    useEffect(() => {
+        const canvas = canvasRef.current
+
+        if (canvas) {
+            const ctx = canvas.getContext("2d")
+            if (ctx) {
                 ctx.strokeStyle = brushColor
                 
                 setGetCtx(ctx)
             }
         }
-    }, [brushSize, brushColor])
+    }, [brushColor])
 
     const drawFn = (e: MouseEvent<HTMLCanvasElement>) => {
         if (drawingEnable) {
@@ -80,6 +94,18 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
         }
     }
 
+    const handleBrushType = () => {
+        if (brushType === "펜") {
+            setBrushType("지우개")
+            setBrushColor(tempColor)
+        }
+        else {
+            setBrushType("펜")
+            setTempColor(brushColor)
+            setBrushColor("#ffffff")
+        }
+    }
+
     return (
         <CanvasContainer enable={`${drawingEnable}`}>
             <CanvasComponent
@@ -108,8 +134,12 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             <input
                 type="color"
                 value={brushColor}
+                disabled={brushType === "펜"}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushColor(e.target.value)}
             />
+            <button onClick={handleBrushType}>
+                {brushType}
+            </button>
         </CanvasContainer>
     )
 }
