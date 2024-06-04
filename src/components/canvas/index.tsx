@@ -99,7 +99,7 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             <input
                 type="range"
                 min={0.1}
-                max={5.0}
+                max={15.0}
                 step={0.1}
                 value={brushSize}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushSize(e.target.value as unknown as number)}
