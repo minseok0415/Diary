@@ -3,7 +3,7 @@ import Canvas from "@/components/canvas"
 import { Container, GlobalStyle } from "@/styles/common"
 import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/detail"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 
 interface Props {
     params: { id: number },
@@ -123,7 +123,7 @@ const Diary = (props: Props) => {
                             value={diaryData.title}
                             placeholder="제목"
                             readOnly={!fixDiary}
-                            onChange={(e) => setDiaryData((prev) => ({...prev, title: e.target.value}))}
+                            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDiaryData((prev) => ({...prev, title: e.target.value}))}
                         />
                         <WrittenDate>{toRegularForm(diaryData.date)}</WrittenDate>
                     </TitleWraper>
@@ -138,7 +138,7 @@ const Diary = (props: Props) => {
                         value={diaryData.content}
                         placeholder="오늘 하루는 정말 보람찼다."
                         readOnly={!fixDiary}
-                        onChange={(e) => setDiaryData((prev) => ({...prev, content: e.target.value}))}
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDiaryData((prev) => ({...prev, content: e.target.value}))}
                     />
                     <Options>
                         <Buttons>
