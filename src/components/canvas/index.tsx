@@ -1,6 +1,6 @@
 "use client"
 import { CanvasComponent, CanvasContainer } from "@/styles/canvas"
-import React, { MouseEvent, useEffect, useRef, useState } from "react"
+import React, { ChangeEvent, MouseEvent, useEffect, useRef, useState } from "react"
 
 const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: string, drawingEnable?: boolean }> = ({ saveCanvasData, imageSrc, drawingEnable = true }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -8,7 +8,9 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     const [painting, setPainting] = useState(false)
     
     const canvasSize = 360
-    
+    const [brushSize, setBrushSize] = useState(2.5)
+    const [brushColor, setBrushColor] = useState("#000000")
+
     useEffect(() => {
         const canvas = canvasRef.current
 
@@ -19,8 +21,8 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             const ctx = canvas.getContext("2d")
             if (ctx) {
                 ctx.lineJoin = "round"
-                ctx.lineWidth = 2.5
-                ctx.strokeStyle = "#000000"
+                ctx.lineWidth = brushSize
+                ctx.strokeStyle = brushColor
                 setGetCtx(ctx)
 
                 if (imageSrc) {
@@ -33,6 +35,18 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             }
         }
     }, [imageSrc])
+
+    useEffect(() => {
+        const canvas = canvasRef.current
+
+        if (canvas) {
+            const ctx = canvas.getContext("2d")
+            if (ctx) {
+                ctx.lineWidth = brushSize
+                setGetCtx(ctx)
+            }
+        }
+    }, [brushSize])
 
     const drawFn = (e: MouseEvent<HTMLCanvasElement>) => {
         if (drawingEnable) {
@@ -80,6 +94,15 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
                 }}
             />
             <button onClick={resetCanvas}>리셋</button>
+            <input
+                type="range"
+                min={0.1}
+                max={5.0}
+                step={0.1}
+                value={brushSize}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushSize(e.target.value as unknown as number)}
+            />
+            {brushSize}
         </CanvasContainer>
     )
 }
