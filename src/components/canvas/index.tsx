@@ -6,12 +6,15 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const [getCtx, setGetCtx] = useState<CanvasRenderingContext2D | null>(null)
     const [painting, setPainting] = useState(false)
-
+    
+    const canvasSize = 360
+    
     useEffect(() => {
         const canvas = canvasRef.current
+
         if (canvas) {
-            canvas.width = 360
-            canvas.height = 400
+            canvas.width = canvasSize
+            canvas.height = canvasSize
             canvas.style.cssText += "background-color: #fff"
             const ctx = canvas.getContext("2d")
             if (ctx) {
@@ -55,6 +58,12 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
         }
     }
 
+    const resetCanvas = () => {
+        if (getCtx) {
+            getCtx.clearRect(0, 0, canvasSize, canvasSize)
+        }
+    }
+
     return (
         <CanvasContainer enable={`${drawingEnable}`}>
             <CanvasComponent
@@ -70,6 +79,7 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
                     saveCanvas()
                 }}
             />
+            <button onClick={resetCanvas}>리셋</button>
         </CanvasContainer>
     )
 }
