@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle`
         color: black;
         text-decoration: none;
     }
+    #today {
+        background-color: #e4f0e8;
+    }
 `
 
 export const Container = styled.div`

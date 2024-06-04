@@ -10,9 +10,11 @@ interface DiaryList extends Array<Diary> {}
 
 const Calendar = () => {
     const [diaryList, setDiaryList] = useState<DiaryList>([])
+    const [today, setToday] = useState("")
 
     useEffect(() => {
         getDiary()
+        getToday()
     }, [])
 
     const getDiary = async () => {
@@ -91,15 +93,28 @@ const Calendar = () => {
                     diaryID = diary.id
             })
             if (diaryID) {
-                contents.push(
-                    `<td>
-                        <a href="/view/${diaryID}">
-                            <div>
-                                ${calender[i]}
-                            </div>
-                        </a>
-                    </td>`
-                )
+                if (`${currentYear}-${currentMonth}-${calender[i]}` === today) {
+                    contents.push(
+                        `<td id="today">
+                            <a href="/view/${diaryID}">
+                                <div>
+                                    ${calender[i]}
+                                </div>
+                            </a>
+                        </td>`
+                    )
+                }
+                else {
+                    contents.push(
+                        `<td>
+                            <a href="/view/${diaryID}">
+                                <div>
+                                    ${calender[i]}
+                                </div>
+                            </a>
+                        </td>`
+                    )
+                }
             }
             else if (calender[i] === "") {
                 contents.push(
@@ -109,11 +124,20 @@ const Calendar = () => {
                 )
             }
             else {
-                contents.push(
-                    `<td>
-                        ${calender[i]}
-                    </td>`
-                )
+                if (`${currentYear}-${currentMonth}-${calender[i]}` === today) {
+                    contents.push(
+                        `<td id="today">
+                            ${calender[i]}
+                        </td>`
+                    )
+                }
+                else {
+                    contents.push(
+                        `<td>
+                            ${calender[i]}
+                        </td>`
+                    )
+                }
             }
         }
 
@@ -133,6 +157,15 @@ const Calendar = () => {
     
     const changeMonth = (diff: number) => {
         setCurrentMonth(prev => prev + diff)
+    }
+
+    const getToday = () => {
+        const today = new Date()
+        const year = today.getFullYear()
+        const month = today.getMonth() + 1
+        const day = today.getDate()
+        const formattedDate = `${year}-${month}-${day}`
+        setToday(formattedDate)
     }
     
     useEffect(() => {
