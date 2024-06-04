@@ -43,10 +43,12 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
             const ctx = canvas.getContext("2d")
             if (ctx) {
                 ctx.lineWidth = brushSize
+                ctx.strokeStyle = brushColor
+                
                 setGetCtx(ctx)
             }
         }
-    }, [brushSize])
+    }, [brushSize, brushColor])
 
     const drawFn = (e: MouseEvent<HTMLCanvasElement>) => {
         if (drawingEnable) {
@@ -103,6 +105,11 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushSize(e.target.value as unknown as number)}
             />
             {brushSize}
+            <input
+                type="color"
+                value={brushColor}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushColor(e.target.value)}
+            />
         </CanvasContainer>
     )
 }
