@@ -47,7 +47,7 @@ export const ChangeMonth = styled.button`
 `
 
 export const Year = styled.input`
-    width: 3rem;
+    width: 3.6rem;
     height: 2rem;
 
     font-size: 1.4rem;
@@ -109,6 +109,13 @@ export const CalendarTableBody = styled.tbody`
 
         text-align: center;
         border: 1px solid #ebeeec;
+
+        cursor: default;
+
+        &:hover {
+            background-color: #e4f0e8;
+        }
+
         a > div {
             margin: auto;
 
