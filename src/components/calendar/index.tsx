@@ -1,3 +1,4 @@
+import { CalendarSetting, CalendarTable, CalendarTableBody, CalendarTableHead, CalenderContainer, ChangeMonth, Empty, Month, MonthOption, Today, Wraper, Year } from "@/styles/calendar"
 import { ChangeEvent, useEffect, useState } from "react"
 
 interface Diary {
@@ -92,18 +93,25 @@ const Calendar = () => {
             if (diaryID) {
                 contents.push(
                     `<td>
-                        <div>
-                            <a href="/view/${diaryID}">${calender[i]}</a>
-                        </div>
+                        <a href="/view/${diaryID}">
+                            <div>
+                                ${calender[i]}
+                            </div>
+                        </a>
+                    </td>`
+                )
+            }
+            else if (calender[i] === "") {
+                contents.push(
+                    `<td>
+                        <div />
                     </td>`
                 )
             }
             else {
                 contents.push(
                     `<td>
-                        <div>
-                            <span>${calender[i]}</span>
-                        </div>
+                        ${calender[i]}
                     </td>`
                 )
             }
@@ -150,59 +158,60 @@ const Calendar = () => {
     }, [diaryList])
     
     return (
-        <div>
-            <div>
-                <div>
-                    <button onClick={() => changeMonth(-1)}>
-                        {'<'}
-                    </button>
-                    <input
+        <CalenderContainer>
+            <CalendarSetting>
+                <Empty />
+                <Wraper>
+                    <ChangeMonth onClick={() => changeMonth(-1)}>
+                        ◂
+                    </ChangeMonth>
+                    <Year
                         type="number"
                         value={currentYear}
+                        max={2033}
+                        min={2014}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setCurrentYear(parseInt(e.target.value))}
                     />
-                    <select
+                    <Month
                         value={currentMonth}
                         onChange={(e: ChangeEvent<HTMLSelectElement>) => setCurrentMonth(parseInt(e.target.value))}
                     >
-                        <option value="1">1월</option>
-                        <option value="2">2월</option>
-                        <option value="3">3월</option>
-                        <option value="4">4월</option>
-                        <option value="5">5월</option>
-                        <option value="6">6월</option>
-                        <option value="7">7월</option>
-                        <option value="8">8월</option>
-                        <option value="9">9월</option>
-                        <option value="10">10월</option>
-                        <option value="11">11월</option>
-                        <option value="12">12월</option>
-                    </select>
-                    <button onClick={() => changeMonth(1)}>
-                        {'>'}
-                    </button>
-                    <button onClick={moveToToday}>
-                        오늘
-                    </button>
-                </div>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>일</th>
-                                <th>월</th>
-                                <th>화</th>
-                                <th>수</th>
-                                <th>목</th>
-                                <th>금</th>
-                                <th>토</th>
-                            </tr>
-                        </thead>
-                        { calender.length > 0 && <tbody dangerouslySetInnerHTML={{__html: calender}}></tbody> }
-                    </table>
-                </div>
-            </div>
-        </div>
+                        <MonthOption value="1">1월</MonthOption>
+                        <MonthOption value="2">2월</MonthOption>
+                        <MonthOption value="3">3월</MonthOption>
+                        <MonthOption value="4">4월</MonthOption>
+                        <MonthOption value="5">5월</MonthOption>
+                        <MonthOption value="6">6월</MonthOption>
+                        <MonthOption value="7">7월</MonthOption>
+                        <MonthOption value="8">8월</MonthOption>
+                        <MonthOption value="9">9월</MonthOption>
+                        <MonthOption value="10">10월</MonthOption>
+                        <MonthOption value="11">11월</MonthOption>
+                        <MonthOption value="12">12월</MonthOption>
+                    </Month>
+                    <ChangeMonth onClick={() => changeMonth(1)}>
+                        ▸
+                    </ChangeMonth>
+                </Wraper>
+                <Today onClick={moveToToday}>
+                    오늘
+                </Today>
+            </CalendarSetting>
+            <CalendarTable>
+                <CalendarTableHead>
+                    <tr>
+                        <th>일</th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                    </tr>
+                </CalendarTableHead>
+                { calender.length > 0 && <CalendarTableBody dangerouslySetInnerHTML={{__html: calender}}></CalendarTableBody> }
+            </CalendarTable>
+        </CalenderContainer>
     )
 }
 
