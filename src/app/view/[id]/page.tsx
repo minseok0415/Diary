@@ -1,5 +1,7 @@
 "use client"
 import Canvas from "@/components/canvas"
+import { Container, GlobalStyle } from "@/styles/common"
+import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/detail"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -111,47 +113,66 @@ const Diary = (props: Props) => {
     }
 
     return (
-        <>
-            <div>
-                <div>
-                    <input
-                        type="text"
-                        value={diaryData.title}
-                        readOnly={!fixDiary}
-                        onChange={(e) => setDiaryData((prev) => ({...prev, title: e.target.value}))}
+        <Container>
+            <GlobalStyle />
+            <Detail>
+                <VerticalLine />
+                <Page>
+                    <TitleWraper>
+                        <Title
+                            value={diaryData.title}
+                            placeholder="제목"
+                            readOnly={!fixDiary}
+                            onChange={(e) => setDiaryData((prev) => ({...prev, title: e.target.value}))}
+                        />
+                        <WrittenDate>{toRegularForm(diaryData.date)}</WrittenDate>
+                    </TitleWraper>
+                    <Canvas
+                        saveCanvasData={setCanvasData}
+                        imageSrc={canvasData}
+                        drawingEnable={fixDiary}
                     />
-                    <p>{toRegularForm(diaryData.date)}</p>
-                </div>
-                <Canvas
-                    saveCanvasData={setCanvasData}
-                    imageSrc={canvasData}
-                    drawingEnable={fixDiary}
-                />
-                <textarea
-                    value={diaryData.content}
-                    readOnly={!fixDiary}
-                    onChange={(e) => setDiaryData((prev) => ({...prev, content: e.target.value}))}
-                />
-            </div>
-            <div>
-                {
-                    fixDiary ?
-                    <button
-                        onClick={putDiary}
-                    >완료</button> :
-                    <button
-                        onClick={() => setFixDiary(() => true)}
-                    >수정</button>
-                }
-                <button
-                    onClick={deleteDiary}
-                >삭제</button>
-            </div>
-            <div>
-                <Link href="/">홈으로</Link>
-                <Link href="/view">일기 목록</Link>
-            </div>
-        </>
+                </Page>
+                <Page>
+                    <Content
+                        value={diaryData.content}
+                        placeholder="오늘 하루는 정말 보람찼다."
+                        readOnly={!fixDiary}
+                        onChange={(e) => setDiaryData((prev) => ({...prev, content: e.target.value}))}
+                    />
+                    <Options>
+                        <Buttons>
+                            {
+                                fixDiary ?
+                                <Button
+                                    onClick={putDiary}
+                                >완료</Button> :
+                                <Button
+                                    onClick={() => setFixDiary(() => true)}
+                                >수정</Button>
+                            }
+                            <Button
+                                onClick={deleteDiary}
+                            >삭제</Button>
+                        </Buttons>
+                        <Bookmarks>
+                            <DiamondTop />
+                            <DiamondMid />
+                            <Link href="/">
+                                <Bookmark>
+                                    홈으로
+                                </Bookmark>
+                            </Link>
+                            <Link href="/view">
+                                <Bookmark>
+                                    일기 목록
+                                </Bookmark>
+                            </Link>
+                        </Bookmarks>
+                    </Options>
+                </Page>
+            </Detail>
+        </Container>
     )
 }
 
