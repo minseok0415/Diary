@@ -121,32 +121,35 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
                     saveCanvas()
                 }}
             />
-            <CanvasTools>
-                <CanvasButton onClick={resetCanvas}>리셋</CanvasButton>
-                <CanvasBrushSize
-                    type="range"
-                    min={0.1}
-                    max={15.0}
-                    step={0.1}
-                    value={brushSize}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushSize(e.target.value as unknown as number)}
-                />
-                <CanvasBrushCircleWraper>
-                    <CanvasBrushCircle
-                        size={brushSize}
-                        color={brushColor}
+            {
+                drawingEnable &&
+                <CanvasTools>
+                    <CanvasButton onClick={resetCanvas}>리셋</CanvasButton>
+                    <CanvasBrushSize
+                        type="range"
+                        min={0.1}
+                        max={15.0}
+                        step={0.1}
+                        value={brushSize}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushSize(e.target.value as unknown as number)}
                     />
-                </CanvasBrushCircleWraper>
-                <CanvasBrushColor
-                    type="color"
-                    value={brushColor}
-                    disabled={brushType === "펜"}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushColor(e.target.value)}
-                />
-                <CanvasButton onClick={handleBrushType}>
-                    {brushType}
-                </CanvasButton>
-            </CanvasTools>
+                    <CanvasBrushCircleWraper>
+                        <CanvasBrushCircle
+                            size={brushSize}
+                            color={brushColor}
+                        />
+                    </CanvasBrushCircleWraper>
+                    <CanvasBrushColor
+                        type="color"
+                        value={brushColor}
+                        disabled={brushType === "펜"}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setBrushColor(e.target.value)}
+                    />
+                    <CanvasButton onClick={handleBrushType}>
+                        {brushType}
+                    </CanvasButton>
+                </CanvasTools>
+            }
         </CanvasContainer>
     )
 }
