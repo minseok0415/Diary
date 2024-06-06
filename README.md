@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 나의 그림일기
+---
 
-## Getting Started
+<br>
+<br>
 
-First, run the development server:
+## 프로젝트 소개
+---
+하루하루 간단하게 **그림일기**를 적고 관리할 수 있는 웹서비스입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<br>
+
+오늘 날짜의 일기를 제목, 그림, 내용으로 *작성* 할 수 있으며,
+
+과거에 적은 일기를 *열람* , *수정* , *삭제* 가 가능합니다.
+
+<br>
+<br>
+
+## 시작 가이드
+---
+**Requirements**
+* Node.js v20.14.0
+* npm 10.7.0
+
+**Installation**
+```
+$ git clone https://github.com/minseok0415/Diary.git
+$ cd Diary
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Setting**
+```
+$ npm install
+$ node connect.js
+$ npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br>
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 기술 스택
+---
+**Environments**
 
-## Learn More
+<img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
-To learn more about Next.js, take a look at the following resources:
+**Config**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Development**
 
-## Deploy on Vercel
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/sqlite3-003B57?style=for-the-badge&logo=sqlite3&logoColor=white">
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br>
+<br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 화면 구성
+---
+<table>
+  <tr>
+    <td>
+      홈페이지
+    </td>
+    <td>
+      일기 작성 페이지
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/minseok0415/Diary/assets/102145504/88ba2f8a-8ef2-45ee-bcaa-90502644b652">
+    </td>
+    <td>
+      <img src="https://github.com/minseok0415/Diary/assets/102145504/db607cf0-3dfa-4226-b7d7-a704e7f95b1d">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      일기 목록(달력) 페이지
+    </td>
+    <td>
+      일기 세부 페이지
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/minseok0415/Diary/assets/102145504/75858e1a-cfdf-43a6-aedf-b70920efc163">
+    </td>
+    <td>
+      <img src="https://github.com/minseok0415/Diary/assets/102145504/e295cfe5-120c-4388-bf00-3449ce5390e0">
+    </td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+## 주요 기능
+---
+### 일기 쓰기 기능
+
+* 제목과 내용을 작성하여 하루를 기록할 수 있습니다.
+* 그림을 그려 더욱 풍부한 표현을 할 수 있습니다.
+
+### 그림 그리기 기능
+
+* 펜 크기와 색상 설정이 가능합니다.
+* 펜, 지우개 도구 전환이 가능합니다.
+* 캔버스 지우기가 가능합니다.
+
+### 일기 목록 기능
+
+* 달력 형태의 일기 목록에서 일기 존재 여부를 확인할 수 있습니다.
+* '오늘' 버튼을 눌러 빠르게 오늘 날짜로 이동할 수 있습니다.
+
+### 일기 수정 및 삭제 기능
+
+* 일기를 열람할 때 원한다면 해당 일기 내용을 수정 혹은 삭제할 수 있습니다.
