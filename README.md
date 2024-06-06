@@ -1,11 +1,10 @@
 # 나의 그림일기
----
 
 <br>
 <br>
 
 ## 프로젝트 소개
----
+
 하루하루 간단하게 **그림일기**를 적고 관리할 수 있는 웹서비스입니다.
 
 <br>
@@ -18,7 +17,7 @@
 <br>
 
 ## 시작 가이드
----
+
 **Requirements**
 * Node.js v20.14.0
 * npm 10.7.0
@@ -40,7 +39,7 @@ $ npm run dev
 <br>
 
 ## 기술 스택
----
+
 **Environments**
 
 <img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visual studio code&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
@@ -57,7 +56,7 @@ $ npm run dev
 <br>
 
 ## 화면 구성
----
+
 <table>
   <tr>
     <td>
@@ -97,7 +96,7 @@ $ npm run dev
 <br>
 
 ## 주요 기능
----
+
 ### 일기 쓰기 기능
 
 * 제목과 내용을 작성하여 하루를 기록할 수 있습니다.
