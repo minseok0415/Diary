@@ -107,7 +107,7 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
     }
 
     return (
-        <CanvasContainer enable={`${drawingEnable}`}>
+        <CanvasContainer $enable={`${drawingEnable}`}>
             <CanvasComponent
                 ref={canvasRef}
                 onMouseDown={() => setPainting(true)}
@@ -135,8 +135,8 @@ const Canvas: React.FC<{ saveCanvasData: (data: string) => void, imageSrc?: stri
                     />
                     <CanvasBrushCircleWraper>
                         <CanvasBrushCircle
-                            size={brushSize}
-                            color={brushColor}
+                            $size={brushSize}
+                            $color={brushColor}
                         />
                     </CanvasBrushCircleWraper>
                     <CanvasBrushColor

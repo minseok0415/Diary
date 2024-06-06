@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export const CanvasContainer = styled.div<{enable: string}>`
+export const CanvasContainer = styled.div<{$enable: string}>`
     width: 22.5rem;
     height: 25rem;
 
-    border: ${props => props.enable === "true" ? "1px solid #d9d9d9" : "none"}
+    border: ${props => props.$enable === "true" ? "1px solid #d9d9d9" : "none"}
 `
 
 export const CanvasComponent = styled.canvas`
@@ -49,11 +49,11 @@ export const CanvasBrushCircleWraper = styled.div`
     justify-content: center;
 `
 
-export const CanvasBrushCircle = styled.div<{size: number, color: string}>`
-    width: ${props => `${props.size / 15}rem`};
-    height: ${props => `${props.size / 15}rem`};
+export const CanvasBrushCircle = styled.div<{$size: number, $color: string}>`
+    width: ${props => `${props.$size / 15}rem`};
+    height: ${props => `${props.$size / 15}rem`};
 
-    background-color: ${props => `${props.color}`};
+    background-color: ${props => `${props.$color}`};
 
     border: 1px solid #d9d9d9;
     border-radius: 10rem;
