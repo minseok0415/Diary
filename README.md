@@ -35,6 +35,12 @@ $ node connect.js
 $ npm run dev
 ```
 
+**에러 발생 시**
+
+`.env.local` 파일의 **NEXT_PUBLIC_API_ADDRESS**의 주소가 실행 주소와 같은지 확인해주세요.
+
+다르다면, 주소를 수정한 후 다시 실행해주세요.
+
 <br>
 <br>
 
