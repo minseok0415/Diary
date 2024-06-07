@@ -36,3 +36,23 @@ export const Container = styled.div`
     background-size: cover;
     background-blend-mode: exclusion;
 `
+
+export const GitHub = styled.div`
+    width: 2rem;
+    height: 2rem;
+
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+
+    background-image: url("/images/GitHub_Logo.svg");
+    background-size: 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+
+    cursor: pointer;
+`

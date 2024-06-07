@@ -1,5 +1,5 @@
 "use client"
-import { GlobalStyle, Container } from "@/styles/common"
+import { GlobalStyle, Container, GitHub } from "@/styles/common"
 import { Button, Diary, Title, Wraper } from "@/styles/home"
 import Link from "next/link"
 
@@ -22,6 +22,7 @@ const Home = () => {
           </Link>
         </Wraper>
       </Diary>
+      <GitHub onClick={() => window.open("https://github.com/minseok0415/Diary")} />
     </Container>
   )
 }

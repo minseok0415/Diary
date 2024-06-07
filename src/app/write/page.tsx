@@ -1,7 +1,7 @@
 "use client"
 import { ChangeEvent, useEffect, useState } from "react"
 import Canvas from "@/components/canvas"
-import { Container, GlobalStyle } from "@/styles/common"
+import { Container, GitHub, GlobalStyle } from "@/styles/common"
 import { Bookmark, Bookmarks, Button, Buttons, Content, Detail, DiamondMid, DiamondTop, Options, Page, Title, TitleWraper, VerticalLine, WrittenDate } from "@/styles/diary"
 import Link from "next/link"
 
@@ -129,6 +129,7 @@ const Write = () => {
                     </Options>
                 </Page>
             </Detail>
+            <GitHub onClick={() => window.open("https://github.com/minseok0415/Diary")} />
         </Container>
     )
 }

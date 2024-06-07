@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import Calendar from "@/components/calendar"
-import { Container, GlobalStyle } from "@/styles/common"
+import { Container, GitHub, GlobalStyle } from "@/styles/common"
 import { Box, Button, DiamondLeft, DiamondRight, List, Title, VerticalLine, Wraper } from "@/styles/view"
 
 const View = () => {
@@ -29,6 +29,7 @@ const View = () => {
                     <DiamondRight />
                 </Wraper>
             </List>
+            <GitHub onClick={() => window.open("https://github.com/minseok0415/Diary")} />
         </Container>
     )
 }
