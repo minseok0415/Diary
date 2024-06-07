@@ -18,7 +18,7 @@ const Calendar = () => {
     }, [])
 
     const getDiary = async () => {
-        await fetch("http://localhost:3000/api/list", {
+        await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api/list`, {
             method: "GET"
         })
             .then(response => {

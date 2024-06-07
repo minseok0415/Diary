@@ -44,7 +44,7 @@ const Diary = (props: Props) => {
     }, [])
 
     const getDiaryById = async () => {
-        await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api/diary?id=${diaryID}`, {
             method: "GET"
         })
             .then(response => {
@@ -71,7 +71,7 @@ const Diary = (props: Props) => {
             canvasData: canvasData
         }
         
-        await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api/diary?id=${diaryID}`, {
             method: "PUT",
             body: JSON.stringify(DTO)
         })
@@ -93,7 +93,7 @@ const Diary = (props: Props) => {
     const deleteDiary = async () => {
         const confirmation = window.confirm('정말로 삭제하시겠습니까?')
         if (confirmation) {
-            await fetch(`http://localhost:3000/api/diary?id=${diaryID}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api/diary?id=${diaryID}`, {
                 method: "DELETE"
             })
                 .then(response => {

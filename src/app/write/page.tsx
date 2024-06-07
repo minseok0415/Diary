@@ -32,7 +32,7 @@ const Write = () => {
     }, [numberDate])
 
     const checkAlreadyExist = async () => {
-        await fetch(`http://localhost:3000/api/check/diary?date=${numberDate}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api/check/diary?date=${numberDate}`, {
             method: "GET"
         })
             .then(response => {
@@ -61,7 +61,7 @@ const Write = () => {
             canvasData: canvasData
         }
 
-        await fetch("http://localhost:3000/api", {
+        await fetch(`${process.env.NEXT_PUBLIC_API_ADDRESS}/api`, {
             method: "POST",
             body: JSON.stringify(DTO)
         })
