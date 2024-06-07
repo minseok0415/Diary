@@ -44,7 +44,8 @@ const Write = () => {
                 .then(data => {
                     console.log("Response data:", data)
                     if (data.id !== -1) {
-                        window.location.href = `/view/${data.id}`
+                        alert("해당 날짜에 일기가 존재하여 세부 페이지로 이동합니다.")
+                        window.location.replace(`/view/${data.id}`)
                     }
                 })
                 .catch(error => {
