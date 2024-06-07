@@ -28,7 +28,7 @@ const Calendar = () => {
                 return response.json()
                 })
                 .then(data => {
-                    console.log("Response data:", data)
+                    // console.log("Response data:", data)
                     setDiaryList(data)
                 })
                 .catch(error => {

@@ -54,7 +54,7 @@ const Diary = (props: Props) => {
                 return response.json()
                 })
                 .then(data => {
-                    console.log("Response data:", data)
+                    // console.log("Response data:", data)
                     setDiaryData(data)
                     setCanvasData(data.canvasData)
                 })
@@ -82,7 +82,7 @@ const Diary = (props: Props) => {
                 return response.json()
                 })
                 .then(data => {
-                    console.log("Response data:", data)
+                    // console.log("Response data:", data)
                     setFixDiary(false)
                 })
                 .catch(error => {
@@ -103,7 +103,7 @@ const Diary = (props: Props) => {
                     return response.json()
                     })
                     .then(data => {
-                        console.log("Response data:", data)
+                        // console.log("Response data:", data)
                         window.history.back()
                     })
                     .catch(error => {

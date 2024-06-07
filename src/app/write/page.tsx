@@ -26,7 +26,7 @@ const Write = () => {
 
     useEffect(() => {
         if (numberDate.length !== 0) {
-            console.log(numberDate)
+            // console.log(numberDate)
             checkAlreadyExist()
         }
     }, [numberDate])
@@ -42,7 +42,7 @@ const Write = () => {
                 return response.json()
                 })
                 .then(data => {
-                    console.log("Response data:", data)
+                    // console.log("Response data:", data)
                     if (data.id !== -1) {
                         alert("해당 날짜에 일기가 존재하여 세부 페이지로 이동합니다.")
                         window.location.replace(`/view/${data.id}`)
@@ -72,7 +72,7 @@ const Write = () => {
                 return response.json()
                 })
                 .then(data => {
-                    console.log("Response data:", data)
+                    // console.log("Response data:", data)
                     window.history.back()
                 })
                 .catch(error => {
